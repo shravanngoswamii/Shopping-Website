@@ -5,15 +5,14 @@
     {% for product in products %}
     <div class="col-lg-4">
         {% if product.image %}
-        <img class="thumbnail" src="{{product.image.url}}">
+        <img class="thumbnail" src="{{ product.image.url }}">
         {% else %}
         <img class="thumbnail" src="{% static 'images/placeholder.png' %}">
         {% endif %}
-        <!-- <img class="thumbnail" src="{{ product.image.url }}"> -->
         <div class="box-element product">
             <h6><strong>{{ product.name }}</strong></h6>
             <hr>
-            <button class="btn btn-outline-secondary add-btn">Add to Cart</button>
+            <button data-product={{product.id}} data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
             <a href="#" class="btn btn-outline-success">View</a>
             <h4 style="display: inline-block; float: right">₹{{ product.price|floatformat:2 }}</h4>
         </div>

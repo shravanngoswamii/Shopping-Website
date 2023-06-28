@@ -12,10 +12,15 @@
 
             <table class="table">
                 <tr>
-                    <th><h5>Items: <strong>3</strong></h5></th>
-                    <th><h5>Total: <strong>300rs</strong></h5></th>
                     <th>
-                        <a style="float: right; margin:5px" href="{% url 'checkout' %}" class="btn btn-success">Checkout</a>
+                        <h5>Items: <strong>{{order.get_cart_items}}</strong></h5>
+                    </th>
+                    <th>
+                        <h5>Total: <strong>₹{{order.get_cart_total|floatformat:2}}</strong></h5>
+                    </th>
+                    <th>
+                        <a style="float: right; margin:5px" href="{% url 'checkout' %}"
+                            class="btn btn-success">Checkout</a>
                     </th>
                 </tr>
             </table>
@@ -25,27 +30,35 @@
 
         <div class="box-element">
             <div class="cart-row">
-                <div style="flex:2"></div>
+                <div style="flex:2"><strong></strong></div>
                 <div style="flex:2"><strong>Item</strong></div>
                 <div style="flex:1"><strong>Price</strong></div>
                 <div style="flex:1"><strong>Quantity</strong></div>
                 <div style="flex:1"><strong>Total</strong></div>
             </div>
 
+            {% for item in items %}
             <div class="cart-row">
-                <div style="flex:2"><img class="row-image" src="{% static 'images/placeholder.png' %}"></div>
-                <div style="flex:2">Product 1</div>
-                <div style="flex:1">300rs</div>
+                <div style="flex:2">
+                    {% if item.product.image %}
+                    <img class="row-image" src="{{ item.product.image.url }}">
+                    {% else %}
+                    <img class="row-image" src="{% static 'images/placeholder.png' %}">
+                    {% endif %}
+                </div>
+                <div style="flex:2">{{item.product.name}}</div>
+                <div style="flex:1">₹{{item.product.price|floatformat:2}}</div>
                 <div style="flex:1">
-                    <p class="quantity">2</p>
+                    <p class="quantity">{{item.quantity}}</p>
                     <div class="quantity">
                         <img class="chg-quantity" src="{% static  'images/arrow-up.png' %}">
-                
+
                         <img class="chg-quantity" src="{% static  'images/arrow-down.png' %}">
-                    </div>              
+                    </div>
                 </div>
-                <div style="flex:1">600rs</div>
+                <div style="flex:1">₹{{item.get_total|floatformat:2}}</div>
             </div>
+            {% endfor %}
         </div>
     </div>
 </div>
