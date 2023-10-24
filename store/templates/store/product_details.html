@@ -1,0 +1,68 @@
+{% extends 'store/main.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="product-details-container">
+    <div class="product-details-left">
+        <div class="big-img">
+            <img id="big-image" src="{% static 'images/test.jpg' %}">
+        </div>
+        <div class="images">
+            <div class="small-img" onclick="changeBigImage('{% static 'images/test.jpg' %}')">
+                <img src="{% static 'images/test.jpg' %}">
+            </div>
+            <div class="small-img" onclick="changeBigImage('{% static 'images/searchicon.png' %}')">
+                <img src="{% static 'images/searchicon.png' %}">
+            </div>
+            <div class="small-img" onclick="changeBigImage('{% static 'images/slide1.png' %}')">
+                <img src="{% static 'images/slide1.png' %}">
+            </div>
+            <div class="small-img" onclick="changeBigImage('{% static 'images/slide2.jpg' %}')">
+                <img src="{% static 'images/slide2.jpg' %}">
+            </div>
+        </div>
+    </div>
+
+    <div class="product-details-right">
+        <div class="url">Home > Product > Kurti</div>
+        <div class="pname">Kurti for Women</div>
+
+        <div class="price"><p>Price: </p>Rs. 1000</div>
+        <div class="size">
+            <p>Size: </p>
+            <select id="size-select">
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+                <option value="XXL">XXL</option>
+            </select>
+        </div>
+        <div class="quantity">
+            <p>Quantity: </p>
+            <input type="number" min="1" max="5" value="1">
+        </div>
+        <div class="btn-box">
+            <button class="buy-btn">Buy Now</button>
+            <button class="cart-btn">Add to Cart</button>
+        </div>
+    </div>
+</div>
+
+<script>
+function changeBigImage(imageSrc) {
+    document.getElementById('big-image').src = imageSrc;
+}
+
+document.getElementById('big-image').src = '{% static 'images/test.jpg' %}';
+document.getElementById('big-image').addEventListener('click', function () {
+    changeBigImage('{% static 'images/test.jpg' %}');
+});
+document.getElementById('size-select').addEventListener('change', function () {
+    var selectedSize = document.getElementById('size-select').value;
+    console.log('Selected size: ' + selectedSize);
+});
+</script>
+
+</div>
+{% endblock content %}
