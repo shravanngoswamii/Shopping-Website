@@ -1,0 +1,136 @@
+/* cart.css */
+.cart-container {
+    padding: 1rem;
+}
+
+.continue-shopping-button {
+    background: none;
+    border: none;
+    color: #185ee0;
+    text-decoration: none;
+    font-size: 18px;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.cart-summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.cart-summary-table th {
+    text-align: left;
+}
+
+.cart-summary-table th h5 {
+    font-weight: normal;
+    font-size: 16px;
+    color: #333;
+}
+
+.checkout-button {
+    background-color: #185ee0;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.cart-item-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.cart-row-header {
+    background: #f8f8f8;
+    font-weight: bold;
+    border-radius: 7px;
+}
+
+.cart-row-header th {
+    padding: 10px;
+    text-align: left;
+}
+
+.cart-row {
+    border-bottom: 1px solid #e2e2e2;
+}
+
+.cart-row th, .cart-row td {
+    padding: 10px;
+    text-align: left;
+}
+
+.cart-item-img img {
+    max-width: 100px;
+    max-height: 100px;
+    object-fit: cover;
+}
+
+.item-name {
+    font-size: 18px;
+    color: #333;
+}
+
+.item-price {
+    font-size: 16px;
+    color: #999;
+}
+
+/* Add or modify these styles */
+.cart-item-quantity {
+    width: 100px; /* Set a fixed width for the quantity column */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the content horizontally and vertically */
+    margin-top: 2.5rem;
+}
+
+.quantity-btn {
+    background-color: #185ee0;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the button content */
+}
+
+.plus-btn {
+    right: 0;
+}
+
+.quantity {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 18px;
+    color: #333;
+}
+
+.minus-btn {
+    left: 0;
+}
+
+
+.cart-item-total {
+    flex: 1;
+}
+
+.total-price {
+    font-size: 18px;
+    color: #333;
+}
+
+
+
+/* Pop Up */
+

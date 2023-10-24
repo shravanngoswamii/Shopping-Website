@@ -1,0 +1,188 @@
+/* Common styles */
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    color: inherit;
+}
+
+.imgclass {
+    max-width: 100%;
+
+}
+
+.logo {
+    margin-left: 2rem;
+    color: #185ee0;
+    font-size: 1.5rem;
+}
+
+.head {
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+    box-shadow: 0 0 1px 0 rgba(24, 94, 224, 0.15), 0 6px 12px 0 rgba(24, 94, 224, 0.15);
+    padding: 0.75rem;
+    border-radius: 99px;
+}
+
+.navul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    margin: 0.5rem;
+}
+
+
+/* Style for the navigation tabs (links) */
+.navli {
+    position: relative;
+}
+
+.navli a {
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #fff;
+    color: #000;
+    border: none;
+    border-radius: 99px;
+    cursor: pointer;
+    transition: color 0.15s ease-in, background-color 0.3s ease;
+}
+
+/* Add a hover effect for the links */
+.navli a:hover {
+    background-color: #e6eef9;
+    color: #185ee0;
+}
+
+/* Animation styles for the checked (active) tab and glider */
+.navli a:focus {
+    color: #185ee0;
+    background-color: #fff;
+    z-index: 2;
+}
+
+.navli a:active {
+    color: #185ee0;
+    background-color: #fff;
+    z-index: 2;
+}
+
+/* Style for the category button */
+.navli:nth-child(2) a {
+    position: relative;
+}
+
+.navli:nth-child(2) a::after {
+    content: "\25BC"; /* Downward arrow (▼) */
+    font-size: 10px;
+    margin-left: 5px;
+}
+
+/* Remove the arrow from the categories dropdown */
+.navli:nth-child(2) .categories a::after {
+    content: none;
+}
+
+/* Style for the categories dropdown */
+.navli:nth-child(2) .categories {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0 0 1px 0 rgba(24, 94, 224, 0.15), 0 6px 12px 0 rgba(24, 94, 224, 0.15);
+    list-style: none;
+    padding: 0.5rem;
+    border-radius: 20px;
+    z-index: 1;
+}
+
+.navli:nth-child(2):hover .categories {
+    display: block;
+    transform: translateX(0);
+    background-color: #fff;
+}
+
+.navli:nth-child(2) .categories li a {
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #fff;
+    color: #000;
+    border: none;
+    border-radius: 99px;
+    cursor: pointer;
+    transition: color 0.15s ease-in, background-color 0.3s ease;
+}
+
+.navli:nth-child(2) .categories li a:hover {
+    background-color: #e6eef9;
+    color: #185ee0;
+}
+
+/* Search bar styles (unchanged) */
+.search {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #e6eef9;
+    border-radius: 99px;
+    padding: 0.3rem 0.5rem;
+    margin-left: 0.7rem;
+    max-height: fit-content;
+}
+
+.search input[type="text"] {
+    border: none;
+    background: none;
+    outline: none;
+    flex: 1;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+}
+
+/* .search button {
+    background-color: #185ee0;
+    color: #fff;
+    border: none;
+    max-height:fit-content;
+    border-radius: 99px;
+    cursor: pointer;
+    padding: 0.3rem 0.5rem;
+} */
+
+/* Default styles for the search button */
+.search button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+/* Style for the search button image */
+.search button .imgclass {
+    max-width: 30px;
+    height: auto;
+}
+
+/* Media query for responsive scaling (unchanged) */
+@media (max-width: 700px) {
+    .navli a {
+        padding: 8px 16px;
+    }
+
+    .navli a:hover {
+        background-color: #e6eef9;
+    }
+
+    .navli a:focus {
+        background-color: #fff;
+    }
+}
+

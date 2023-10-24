@@ -1,0 +1,68 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<div class="cart-container">
+    <h1>Your Shopping Cart</h1>
+    <a class="continue-shopping-button" href="{% url 'home' %}">&#x2190; Continue Shopping</a>
+    <table class="cart-summary-table">
+        <tr>
+            <th>
+                <h5>Items: <strong>1</strong></h5>
+            </th>
+            <th>
+                <h5>Total: <strong>₹1000</strong></h5>
+            </th>
+            <th>
+                <a class="checkout-button" href="{% url 'checkout' %}">Checkout</a>
+            </th>
+        </tr>
+    </table>
+    <table class="cart-item-table">
+        <tr class="cart-row-header">
+            <th>Image</th>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+        </tr>
+        {% comment %} {% for item in items %} {% endcomment %}
+        <tr class="cart-row">
+            <td class="cart-item-img">
+                <img class="row-image" src="{% static 'images/test.jpg' %}">
+            </td>
+            <td class="cart-item-details">
+                <p class="item-name">Kurti</p>
+            </td>
+            <td class="cart-item-details">
+                <p class="item-price">₹500</p>
+            </td>
+            <td class="cart-item-quantity">
+                <button class="quantity-btn minus-btn" onclick="decreaseQuantity(this)">-</button>
+                <span class="quantity">2</span>
+                <button class="quantity-btn plus-btn" onclick="increaseQuantity(this)">+</button>
+            </td>
+            <td class="cart-item-total">
+                <p class="total-price">₹1000</p>
+            </td>
+        </tr>
+        {% comment %} {% endfor %} {% endcomment %}
+    </table>
+</div>
+
+<script>
+    function decreaseQuantity(button) {
+        var quantityElement = button.nextElementSibling;
+        var currentQuantity = parseInt(quantityElement.textContent);
+        if (currentQuantity > 1) {
+            quantityElement.textContent = currentQuantity - 1;
+        }
+    }
+
+    function increaseQuantity(button) {
+        var quantityElement = button.previousElementSibling;
+        var currentQuantity = parseInt(quantityElement.textContent);
+        quantityElement.textContent = currentQuantity + 1;
+    }
+</script>
+
+{% endblock content %}

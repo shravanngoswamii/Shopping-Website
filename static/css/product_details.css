@@ -1,0 +1,141 @@
+.product-details-container {
+    display: flex;
+    width: 1000px;
+    margin: 20px auto;
+}
+
+.product-details-left {
+    width: 40%;
+}
+
+.big-img {
+    width: 100%;
+    max-width: 100%;
+}
+
+.big-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.images {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.small-img {
+    width: 100px;
+    border: 1.5px solid #185ee0;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.small-img img {
+    width: 100%;
+}
+
+.small-img:hover {
+    border-width: 1.5px;
+}
+
+.product-details-right {
+    width: 60%;
+    padding: 0 20px;
+    border-left: 1px solid #ccc;
+    box-sizing: border-box; /* Ensure padding is included in width */
+}
+
+.url {
+    font-size: 16px;
+    font-weight: 400;
+    color: #185ee0;
+}
+
+.pname {
+    font-size: 22px;
+    font-weight: 600;
+    margin-top: 20px;
+}
+
+.price p {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.price {
+    font-size: 20px;
+    font-weight: 500;
+    margin: 20px 0;
+}
+
+.size {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+.select-box {
+    width: 80px;
+}
+
+.quantity {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+input[type="number"] {
+    width: 60px;
+    height: 30px;
+    font-size: 17px;
+    font-weight: 500;
+    border: 1px solid #185ee0;
+    text-align: center;
+    margin-left: 15px;
+}
+
+.btn-box {
+    display: flex;
+    margin: 20px 0;
+}
+
+.buy-btn,
+.cart-btn {
+    font-size: 18px;
+    padding: 8px 25px;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    color: white;
+    text-align: center;
+}
+
+.cart-btn {
+    background-color: #185ee0;
+    margin-right: 20px;
+}
+
+.buy-btn {
+    background-color: #185ee0;
+}
+
+.cart-btn:hover {
+    background-color: #0d3eaf;
+}
+
+.buy-btn:hover {
+    background-color: #0d3eaf;
+}

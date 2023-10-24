@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/nav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/products.css' %}">
+    <link rel="stylesheet" href="{% static 'css/product_details.css' %}">
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+    <link rel="stylesheet" href="{% static 'css/checkout.css' %}">
+
+    
+</head>
+
+<body>
+    <nav>
+        <div class="head">
+            <div class="logo">
+                <p><a href="{% url 'home' %}">WeMade</a></p>
+            </div>
+            <div class="navcenter">
+                <ul class="navul">
+                    <li class="navli">
+                        <a href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="navli">
+                        <a href="#categories">Category</a>
+                        <ul class="categories">
+                            <li class="navli"><a href="{% url 'products' %}">Kurti</a></li>
+                            <li class="navli"><a href="#category2">Lehenga</a></li>
+                            <li class="navli"><a href="#category3">Saree</a></li>
+                        </ul>
+                    </li>
+                    <li class="navli">
+                        <a href="{% url 'cart' %}">Cart</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="search">
+                <input type="text" placeholder="Search" class="search-input">
+                <button type="submit" class="search-button"> <img class="imgclass" src="{% static 'images/searchicon.png' %}" alt="glass"></button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        {% block content %}
+
+        {% endblock content %}
+    </div>
+
+    <footer class="footer">
+        <!-- Your footer content -->
+    </footer>
+</body>
+
+</html>

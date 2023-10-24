@@ -1,0 +1,76 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<div class="checkout-container">
+    <div class="checkout-column">
+        <div class="box-element" id="form-wrapper">
+            <form id="form">
+                <div id="user-info" class="checkout-form">
+                    <h3>User Information</h3>
+                    <div class="form-field">
+                        <input required class="form-control" type="text" name="name" placeholder="Name..">
+                    </div>
+                    <div class="form-field">
+                        <input required class="form-control" type="email" name="email" placeholder="Email..">
+                    </div>
+                </div>
+                
+                <div id="shipping-info" class="checkout-form">
+                    <hr>
+                    <p>Shipping Information:</p>
+                    <hr>
+                    <div class="form-field">
+                        <input class="form-control" type="text" name="address" placeholder="Address..">
+                    </div>
+                    <div class="form-field">
+                        <input class="form-control" type="text" name="city" placeholder="City..">
+                    </div>
+                    <div class="form-field">
+                        <input class="form-control" type="text" name="state" placeholder="State..">
+                    </div>
+                    <div class="form-field">
+                        <input class="form-control" type="text" name="zipcode" placeholder="Zip code..">
+                    </div>
+                    <div class="form-field">
+                        <input class="form-control" type="text" name="country" placeholder="Country..">
+                    </div>
+                </div>
+
+                <hr>
+                <input id="form-button" class="checkout-button" type="submit" value="Continue">
+            </form>
+        </div>
+    </div>
+
+    <div class="checkout-column">
+        <div class="box-element">
+            <a class="checkout-back-button" href="{% url 'cart' %}">&#x2190; Back to Cart</a>
+            <hr>
+            <h3>Order Summary</h3>
+            <hr>
+            <table class="order-summary-table">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Item</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% comment %} {% for item in items %} {% endcomment %}
+                    <tr>
+                        <td><img class="row-image" src="{% static 'images/test.jpg' %}"></td>
+                        <td>Kurti</td>
+                        <td>₹500</td>
+                        <td>2</td>
+                    </tr>
+                    {% comment %} {% endfor %} {% endcomment %}
+                </tbody>
+            </table>
+            <h5>Items: 2</h5>
+            <h5>Total: ₹1000</h5>
+        </div>
+    </div>
+</div>
+{% endblock content %}
