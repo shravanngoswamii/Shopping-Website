@@ -3,45 +3,58 @@
 
 {% block content %}
   <main class="product-container">
-    <div class="product-cards">
-      <div class="card">
-        <div class="primg">
-          <a href="{% url 'product_details' %}"><img class="thumbnail" src="{% static 'images/test.jpg' %}" alt="product image" /></a>
-        </div>
-        <div class="prdetails">
-          <div class="prdetails-content">
-            <p class="hpr3">Kurti</p>
-            <p class="ppr">₹6000</p>
+    <!-- Category Filter Form -->
+
+    {% for product in products %}
+      <div class="product-cards">
+        <div class="card">
+          <div class="primg">
+            <a href="{% url 'product_details' %}">
+              {% if product.image %}
+                <img class="thumbnail" src="{{ product.imageURL }}" />
+              {% else %}
+                <img class="thumbnail" src="{% static 'images/placeholder.jpg' %}" />
+              {% endif %}
+            </a>
           </div>
-          <button class="buy-now-button">Buy Now</button>
+          <div class="prdetails">
+            <div class="prdetails-content">
+              <p class="hpr3">{{ product.name }}</p>
+              <p class="ppr">₹{{ product.price|floatformat:2 }}</p>
+              <!-- Display the category of the product -->
+              {% if product.category %}
+                <p class="category">Category: {{ product.category.name }}</p>
+              {% endif %}
+            </div>
+            <button class="buy-now-button" data-product-id="{{ product.id }}">Add to Cart</button>
+          </div>
         </div>
       </div>
-    </div>
-
-    <div class="product-cards">
-      <div class="card">
-        <div class="primg">
-          <img class="thumbnail" src="{% static 'images/test.jpg' %}" alt="product image"/>
-        </div>
-        <div class="prdetails">
-          <p class="hpr3">Kurti</p>
-          <p class="ppr">₹6000</p>
-          <button class="buy-now-button">Buy Now</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="product-cards">
-      <div class="card">
-        <div class="primg">
-          <img class="thumbnail" src="{% static 'images/placeholder.jpg' %}" alt="product image" />
-        </div>
-        <div class="prdetails">
-          <p class="hpr3">Kurti</p>
-          <p class="ppr">₹6000</p>
-          <button class="buy-now-button">Buy Now</button>
-        </div>
-      </div>
-    </div>
+    {% endfor %}
   </main>
+
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function () {
+  $(".buy-now-button").on("click", function () {
+    var productId = $(this).data("product-id");
+    
+    // Send an AJAX request to add the product to the cart
+    $.ajax({
+      type: "POST",
+      url: "{% url 'add_to_cart' %}",  // Replace 'add_to_cart' with your actual URL name
+      data: {
+        csrfmiddlewaretoken: "{{ csrf_token }}",
+        product_id: productId,
+      },
+      success: function (data) {
+        // Handle the response (e.g., show a success message)
+        alert(data.message);
+      },
+    });
+  });
+});
+</script>
+
 {% endblock %}

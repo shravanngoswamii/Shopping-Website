@@ -32,15 +32,18 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'store.apps.StoreConfig',
+
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'store.apps.StoreConfig',
 ]
+
+AUTH_USER_MODEL = 'store.CustomUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -123,6 +126,14 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
+
+MEDIA_URL = '/PRODUCT_IMAGES/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/PRODUCT_IMAGES')
+
+LOGIN_URL = 'login'  # Replace 'login' with the name of your custom login view if you have one
+LOGIN_REDIRECT_URL = 'home'  # Replace 'home' with the name of your default login redirect if you have one
+LOGOUT_REDIRECT_URL = 'home'  # Replace 'home' with the name of your default logout redirect if you have one
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

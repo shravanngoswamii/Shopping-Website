@@ -1,0 +1,35 @@
+{% extends 'store/main.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="auth-container"> <!-- Common class name for both forms -->
+    <form method="post">
+      {% csrf_token %}
+      <h2>Sign Up</h2>
+
+      {{ form.full_name.label_tag }}
+      {{ form.full_name }}
+
+      {{ form.email.label_tag }}
+      {{ form.email }}
+
+      {{ form.password1.label_tag }}
+      {{ form.password1 }}
+
+      {{ form.password2.label_tag }}
+      {{ form.password2 }}
+
+      {{ form.phone_number.label_tag }}
+      {{ form.phone_number }}
+
+      {{ form.shipping_address.label_tag }}
+      {{ form.shipping_address }}
+
+      {{ form.birthdate.label_tag }}
+      {{ form.birthdate }}
+
+      <button  class="auth-button" type="submit">Sign Up</button>
+    </form>
+    <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+  </div>
+{% endblock %}

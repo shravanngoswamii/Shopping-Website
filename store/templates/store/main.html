@@ -1,61 +1,140 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="{% static 'css/nav.css' %}">
-    <link rel="stylesheet" href="{% static 'css/home.css' %}">
-    <link rel="stylesheet" href="{% static 'css/products.css' %}">
-    <link rel="stylesheet" href="{% static 'css/product_details.css' %}">
-    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
-    <link rel="stylesheet" href="{% static 'css/checkout.css' %}">
+    <link rel="stylesheet" href="{% static 'css/nav.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/products.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/product_details.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/checkout.css' %}" />
 
-    
-</head>
+    <link rel="stylesheet" href="{% static 'css/common-auth.css' %}" />
 
-<body>
+    <!-- Additional CSS for the category filter form -->
+  </head>
+
+  <body>
     <nav>
-        <div class="head">
-            <div class="logo">
-                <p><a href="{% url 'home' %}">WeMade</a></p>
-            </div>
-            <div class="navcenter">
-                <ul class="navul">
-                    <li class="navli">
-                        <a href="{% url 'home' %}">Home</a>
-                    </li>
-                    <li class="navli">
-                        <a href="#categories">Category</a>
-                        <ul class="categories">
-                            <li class="navli"><a href="{% url 'products' %}">Kurti</a></li>
-                            <li class="navli"><a href="#category2">Lehenga</a></li>
-                            <li class="navli"><a href="#category3">Saree</a></li>
-                        </ul>
-                    </li>
-                    <li class="navli">
-                        <a href="{% url 'cart' %}">Cart</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="search">
-                <input type="text" placeholder="Search" class="search-input">
-                <button type="submit" class="search-button"> <img class="imgclass" src="{% static 'images/searchicon.png' %}" alt="glass"></button>
-            </div>
+      <div class="head">
+        <div class="logo">
+          <p>
+            <a href="{% url 'home' %}">WeMade</a>
+          </p>
         </div>
+        <div class="navcenter">
+          <ul class="navul">
+            <li class="navli">
+              <a href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="navli">
+              <a href="{% url 'products' %}">Category</a>
+              <ul class="categories">
+                <li class="navli">
+                  <a href="{% url 'products' %}">All</a>
+                </li>
+                {% for category in categories %}
+                  <!-- Loop through categories -->
+                  <li class="navli">
+                    <a href="{% url 'products' %}?category={{ category.name }}">{{ category.name }}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </li>
+            <li class="navli">
+              <a href="{% url 'cart' %}">Cart</a>
+            </li>
+          </ul>
+        </div>
+        <div class="search" style="margin-top: 14px;margin-bottom: 14px;border-top-width: 0.01px;border-bottom-width: 0.01px;">
+          <form action="{% url 'products' %}" method="get" id="search-form">
+            <input type="text" placeholder="Search" class="search-input" name="search" value="" style="margin-bottom: 0px;border-top-width: 0px;border-bottom-width: 0px;" />
+          </form>
+          <button type="submit" class="search-button"><img class="imgclass" src="{% static 'images/searchicon.png' %}" alt="glass" /></button>
+        </div>
+        <ul class="navul">
+          <!-- ... other navigation links ... -->
+          <li class="navli accounts-dropdown"> <!-- Use a new class for Accounts -->
+            <a href="#">Accounts</a>
+            <ul class="navli accounts-content"> <!-- Use a new class for the Accounts content -->
+                {% if user.is_authenticated %}
+                    <li class="navli">
+                        <a href="#">User Profile</a>
+                    </li>
+                    <li class="navli">
+                        <a href="{% url 'logout' %}">Logout</a>
+                    </li>
+                {% else %}
+                    <li class="navli">
+                        <a href="{% url 'login' %}">Login</a>
+                    </li>
+                    <li class="navli">
+                        <a href="{% url 'signup' %}">Signup</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </li>
+        
+          <!-- ... other navigation links ... -->
+        </ul>
+      </div>
     </nav>
 
     <div class="container">
-        {% block content %}
+      {% block content %}
 
-        {% endblock content %}
+      {% endblock %}
     </div>
 
-    <footer class="footer">
-        <!-- Your footer content -->
-    </footer>
-</body>
+<!-- Add this content inside the <footer> tag in your main.html file -->
 
+<!-- Add this content inside the <footer> tag in your main.html file -->
+
+<!-- Add this content inside the <footer> tag in your main.html file -->
+
+<!-- Add this content inside the <footer> tag in your main.html file -->
+
+  <footer class="footer">
+    <div class="head">
+        <div class="logo">
+            <p>
+                <a href="#">WeMade</a>
+            </p>
+        </div>
+        <div class="navcenter">
+            <ul class="navul">
+                <li class="navli">
+                    <a href="#">Home</a>
+                </li>
+                <li class="navli">
+                    <a href="#">About</a>
+                    <ul class="categories">
+                        <li class="navli">
+                            <a href="#">Address</a>
+                        </li>
+                        <li class="navli">
+                            <a href="#">Certifications</a>
+                        </li>
+                        <li class="navli">
+                            <a href="#">Products</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="navli">
+                    <a href="#">Contact Us</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <center><p>&copy; 2023 Your E-Commerce. All rights reserved.</p></center>
+    </div>
+</footer>
+
+
+
+  </body>
 </html>

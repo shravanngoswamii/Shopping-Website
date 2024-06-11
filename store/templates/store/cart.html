@@ -1,3 +1,4 @@
+<!-- cart.html -->
 {% extends 'store/main.html' %}
 {% load static %}
 {% block content %}
@@ -7,10 +8,10 @@
     <table class="cart-summary-table">
         <tr>
             <th>
-                <h5>Items: <strong>1</strong></h5>
+                <h5>Items: <strong>{{ items|length }}</strong></h5>
             </th>
             <th>
-                <h5>Total: <strong>₹1000</strong></h5>
+                <h5>Total: <strong>₹<span id="total-price">{{ total_price|floatformat:2 }}</span></strong></h5>
             </th>
             <th>
                 <a class="checkout-button" href="{% url 'checkout' %}">Checkout</a>
@@ -25,44 +26,61 @@
             <th>Quantity</th>
             <th>Total</th>
         </tr>
-        {% comment %} {% for item in items %} {% endcomment %}
-        <tr class="cart-row">
-            <td class="cart-item-img">
-                <img class="row-image" src="{% static 'images/test.jpg' %}">
-            </td>
-            <td class="cart-item-details">
-                <p class="item-name">Kurti</p>
-            </td>
-            <td class="cart-item-details">
-                <p class="item-price">₹500</p>
-            </td>
-            <td class="cart-item-quantity">
-                <button class="quantity-btn minus-btn" onclick="decreaseQuantity(this)">-</button>
-                <span class="quantity">2</span>
-                <button class="quantity-btn plus-btn" onclick="increaseQuantity(this)">+</button>
-            </td>
-            <td class="cart-item-total">
-                <p class="total-price">₹1000</p>
-            </td>
-        </tr>
-        {% comment %} {% endfor %} {% endcomment %}
+        {% for item in items %}
+        {% comment %} {% if item.quantity > 0 %} {% endcomment %}
+            <tr class="cart-row">
+                <td class="cart-item-img">
+                    <img class="row-image" src="{{ item.product.imageURL }}">
+                </td>
+                <td class="cart-item-details">
+                    <p class="item-name">{{ item.product.name }}</p>
+                </td>
+                <td class="cart-item-details">
+                    <p class="item-price">₹{{ item.product.price|floatformat:2 }}</p>
+                </td>
+                <td class="cart-item-quantity">
+                    <input type="number" name="quantity_{{ item.id }}" value="{{ item.quantity }}" min="0" class="quantity-input">
+                </td>
+                <td class="cart-item-total">
+                    <p class="total-price" id="item-total-{{ item.id }}">₹{{ item.calculate_total|floatformat:2 }}</p>
+                </td>
+            </tr>
+        {% comment %} {% endif %} {% endcomment %}
+        {% endfor %}
     </table>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    function decreaseQuantity(button) {
-        var quantityElement = button.nextElementSibling;
-        var currentQuantity = parseInt(quantityElement.textContent);
-        if (currentQuantity > 1) {
-            quantityElement.textContent = currentQuantity - 1;
-        }
-    }
+    // jQuery function to update quantities and total price
+$(document).ready(function () {
+    $(".quantity-input").on("change", function () {
+        var quantityInput = $(this);
+        var itemId = quantityInput.attr("name").split("_")[1];
+        var newQuantity = quantityInput.val();
 
-    function increaseQuantity(button) {
-        var quantityElement = button.previousElementSibling;
-        var currentQuantity = parseInt(quantityElement.textContent);
-        quantityElement.textContent = currentQuantity + 1;
-    }
+        // Send an AJAX request to update the quantity
+        $.ajax({
+            type: "POST",
+            url: "{% url 'update_cart' %}",
+            data: {
+                csrfmiddlewaretoken: "{{ csrf_token }}",
+                item_id: itemId,
+                new_quantity: newQuantity,
+            },
+            success: function (data) {
+                // Update the total price for the item
+                var itemTotalPrice = "₹" + data.item_total;  // Corrected the data reference
+
+                // Update the individual item's total price
+                $("#item-total-" + itemId).text(itemTotalPrice);
+
+                // Update the overall total price
+                $("#total-price").text(data.total_price);  // Corrected the data reference
+            },
+        });
+    });
+});
+
 </script>
-
 {% endblock content %}

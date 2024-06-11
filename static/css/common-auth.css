@@ -1,0 +1,78 @@
+/* Container styling for the login and signup form (both have the same class) */
+.auth-container {
+    max-width: 400px;
+    margin: 0 auto;
+    margin-top: 100px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Form element styling (modify selectors for common styling) */
+.regform {
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+/* .auth-heading {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+} */
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.auth-button {
+    background-color: #185ee0;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.auth-button:hover {
+    background-color: #0d3eaf;
+}
+
+/* Link styling for switching between login and signup */
+.auth-link {
+    color: #185ee0;
+    text-decoration: none;
+}
+
+.auth-link:hover {
+    text-decoration: underline;
+}
+
+.regform input:focus {
+    border: 1px solid #185ee0;
+}
+
+
+/* Media query for responsiveness */
+@media (max-width: 600px) {
+    .auth-container {
+        max-width: 90%;
+    }
+}

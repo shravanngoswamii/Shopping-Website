@@ -1,0 +1,32 @@
+{% extends 'store/main.html' %}
+{% load static %}
+
+{% block content %}
+<div class="auth-container">
+    <form class="regform" method="post">
+      {% csrf_token %}
+      <h2 style="text-align: center;">Login</h2>
+
+      {{ form.username.label_tag }}
+      {{ form.username }}
+      {{ form.username.errors }}
+
+      {{ form.password.label_tag }}
+      {{ form.password }}
+      {{ form.password.errors }}
+
+      <div style="text-align: center;">
+        <button type="submit" class="auth-button">Login</button>
+      </div>
+    </form>
+    <p>Don't have an account? <a href="{% url 'signup' %}" class="auth-link">Sign up</a></p>
+  </div>
+
+  <style>
+    .regform input {
+        border: 1px solid #185ee0;
+
+    }
+</style>
+
+{% endblock %}

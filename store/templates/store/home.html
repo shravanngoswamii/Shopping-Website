@@ -23,9 +23,9 @@
                 <img src="{% static 'images/slide1.png' %}" style="width:100%">
             </div>
 
-            <!-- Next and previous buttons -->
+            {% comment %} <!-- Next and previous buttons -->
             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a> {% endcomment %}
         </div>
         <br>
 
@@ -35,8 +35,51 @@
             <span class="dot" onclick="currentSlide(2)"></span>
             <span class="dot" onclick="currentSlide(3)"></span>
         </div>
-
     </div>
+
+
+    <main class="product-container">
+        <div class="product-cards">
+          <div class="card">
+            <div class="primg">
+              <a href="{% url 'product_details' %}"><img class="thumbnail" src="{% static 'images/test.jpg' %}" alt="product image" /></a>
+            </div>
+            <div class="prdetails">
+              <div class="prdetails-content">
+                <p class="hpr3">Kurti</p>
+                <p class="ppr">₹6000</p>
+              </div>
+              <button class="buy-now-button">Buy Now</button>
+            </div>
+          </div>
+        </div>
+    
+        <div class="product-cards">
+          <div class="card">
+            <div class="primg">
+              <img class="thumbnail" src="{% static 'images/test.jpg' %}" alt="product image"/>
+            </div>
+            <div class="prdetails">
+              <p class="hpr3">Kurti</p>
+              <p class="ppr">₹6000</p>
+              <button class="buy-now-button">Buy Now</button>
+            </div>
+          </div>
+        </div>
+    
+        <div class="product-cards">
+          <div class="card">
+            <div class="primg">
+              <img class="thumbnail" src="{% static 'images/placeholder.jpg' %}" alt="product image" />
+            </div>
+            <div class="prdetails">
+              <p class="hpr3">Kurti</p>
+              <p class="ppr">₹6000</p>
+              <button class="buy-now-button">Buy Now</button>
+            </div>
+          </div>
+        </div>
+      </main>
 
     <script>
         let slideIndex = 0;
